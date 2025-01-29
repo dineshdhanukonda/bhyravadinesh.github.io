@@ -3,21 +3,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: #0a192f;
-    color: #8892b0;
+    background: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* Header */
 .header {
-    background: rgba(10, 25, 47, 0.95);
+    background: #333;
+    color: #fff;
     padding: 1rem 2rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
@@ -41,7 +44,7 @@ body {
 }
 
 .nav-links a {
-    color: #ccd6f6;
+    color: #fff;
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -57,25 +60,24 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 80px;
-    background: linear-gradient(45deg, #0a192f, #112240);
+    padding-top: 100px;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
 }
 
 .hero-content h1 {
     font-size: 4rem;
-    color: #ccd6f6;
     margin-bottom: 1rem;
 }
 
 .tagline {
     font-size: 1.5rem;
-    color: #8892b0;
     margin-bottom: 1rem;
 }
 
 .experience {
     font-size: 1.2rem;
-    color: #64ffda;
+    color: #ffeb3b;
 }
 
 .social-icons {
@@ -83,25 +85,25 @@ body {
 }
 
 .social-icons a {
-    color: #ccd6f6;
+    color: #fff;
     font-size: 2rem;
     margin: 0 1rem;
     transition: color 0.3s;
 }
 
 .social-icons a:hover {
-    color: #64ffda;
+    color: #ffeb3b;
 }
 
 /* Skills Section */
 .skills {
     padding: 5rem 2rem;
-    background: #112240;
+    background: #fff;
+    color: #333;
 }
 
 h2 {
     text-align: center;
-    color: #ccd6f6;
     font-size: 2.5rem;
     margin-bottom: 3rem;
 }
@@ -115,11 +117,12 @@ h2 {
 }
 
 .skill-card {
-    background: #0a192f;
+    background: #f0f2f5;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .skill-card:hover {
@@ -128,23 +131,23 @@ h2 {
 
 .skill-card i {
     font-size: 3rem;
-    color: #64ffda;
+    color: #6a11cb;
     margin-bottom: 1rem;
 }
 
 .skill-card h3 {
-    color: #ccd6f6;
     margin-bottom: 1rem;
 }
 
 .skill-card p {
-    color: #8892b0;
+    color: #666;
 }
 
 /* Experience Section */
 .experience {
     padding: 5rem 2rem;
-    background: #0a192f;
+    background: #fff;
+    color: #333;
 }
 
 .timeline {
@@ -153,19 +156,20 @@ h2 {
 }
 
 .timeline-item {
-    background: #112240;
+    background: #f0f2f5;
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-item h3 {
-    color: #64ffda;
+    color: #6a11cb;
     margin-bottom: 0.5rem;
 }
 
 .date {
-    color: #8892b0;
+    color: #666;
     font-size: 0.9rem;
 }
 
@@ -175,14 +179,15 @@ h2 {
 }
 
 .timeline-item li {
-    color: #8892b0;
+    color: #666;
     margin-bottom: 0.5rem;
 }
 
 /* Projects Section */
 .projects {
     padding: 5rem 2rem;
-    background: #112240;
+    background: #fff;
+    color: #333;
 }
 
 .projects-grid {
@@ -194,10 +199,11 @@ h2 {
 }
 
 .project-card {
-    background: #0a192f;
+    background: #f0f2f5;
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .project-card:hover {
@@ -211,18 +217,16 @@ h2 {
 }
 
 .project-card h3 {
-    color: #ccd6f6;
     padding: 1rem;
 }
 
 .project-card p {
-    color: #8892b0;
     padding: 0 1rem 1rem;
 }
 
 .project-link {
     display: inline-block;
-    color: #64ffda;
+    color: #6a11cb;
     text-decoration: none;
     padding: 0 1rem 1rem;
 }
@@ -230,8 +234,9 @@ h2 {
 /* Contact Section */
 .contact {
     padding: 5rem 2rem;
-    background: #0a192f;
+    background: #fff;
     text-align: center;
+    color: #333;
 }
 
 .contact-content p {
@@ -241,8 +246,8 @@ h2 {
 
 .email-btn {
     background: transparent;
-    border: 2px solid #64ffda;
-    color: #64ffda;
+    border: 2px solid #6a11cb;
+    color: #6a11cb;
     padding: 1rem 2rem;
     border-radius: 5px;
     text-decoration: none;
@@ -250,15 +255,15 @@ h2 {
 }
 
 .email-btn:hover {
-    background: rgba(100, 255, 218, 0.1);
+    background: rgba(106, 17, 203, 0.1);
 }
 
 /* Footer */
 .footer {
     text-align: center;
     padding: 2rem;
-    background: #112240;
-    color: #8892b0;
+    background: #333;
+    color: #fff;
 }
 
 /* Responsive Design */
