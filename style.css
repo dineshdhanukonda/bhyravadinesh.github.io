@@ -1,0 +1,277 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0a192f;
+    color: #8892b0;
+}
+
+/* Header */
+.header {
+    background: rgba(10, 25, 47, 0.95);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: #64ffda;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ccd6f6;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #64ffda;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    background: linear-gradient(45deg, #0a192f, #112240);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    color: #ccd6f6;
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #8892b0;
+    margin-bottom: 1rem;
+}
+
+.experience {
+    font-size: 1.2rem;
+    color: #64ffda;
+}
+
+.social-icons {
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    color: #ccd6f6;
+    font-size: 2rem;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #64ffda;
+}
+
+/* Skills Section */
+.skills {
+    padding: 5rem 2rem;
+    background: #112240;
+}
+
+h2 {
+    text-align: center;
+    color: #ccd6f6;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    background: #0a192f;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+}
+
+.skill-card i {
+    font-size: 3rem;
+    color: #64ffda;
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    color: #ccd6f6;
+    margin-bottom: 1rem;
+}
+
+.skill-card p {
+    color: #8892b0;
+}
+
+/* Experience Section */
+.experience {
+    padding: 5rem 2rem;
+    background: #0a192f;
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    background: #112240;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+}
+
+.timeline-item h3 {
+    color: #64ffda;
+    margin-bottom: 0.5rem;
+}
+
+.date {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+.timeline-item ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.timeline-item li {
+    color: #8892b0;
+    margin-bottom: 0.5rem;
+}
+
+/* Projects Section */
+.projects {
+    padding: 5rem 2rem;
+    background: #112240;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: #0a192f;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    color: #ccd6f6;
+    padding: 1rem;
+}
+
+.project-card p {
+    color: #8892b0;
+    padding: 0 1rem 1rem;
+}
+
+.project-link {
+    display: inline-block;
+    color: #64ffda;
+    text-decoration: none;
+    padding: 0 1rem 1rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 2rem;
+    background: #0a192f;
+    text-align: center;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.email-btn {
+    background: transparent;
+    border: 2px solid #64ffda;
+    color: #64ffda;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.email-btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: #112240;
+    color: #8892b0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+}
