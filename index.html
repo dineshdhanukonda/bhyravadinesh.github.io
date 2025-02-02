@@ -3,132 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinesh Dhanukonda | DevOps Engineer</title>
+    <title>Diinesh Dhanukonda | DevOps Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7fc;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .header {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?technology,cloud') no-repeat center;
+            background-size: cover;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+        .skills, .experience, .projects, .contact {
+            padding: 4rem 10%;
+            text-align: center;
+        }
+        .skills-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .skill-card, .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        .skill-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .contact-content a {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .contact-content a:hover {
+            background: #0056b3;
+        }
+        .footer {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="logo">DINESH</div>
-            <ul class="nav-links">
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="logo">DINESH</div>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </header>
-
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Dinesh Dhanukonda</h1>
-            <p class="tagline">DevOps Engineer | Cloud & Automation Specialist</p>
-            <p class="experience">3.5+ years of building scalable infrastructure</p>
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/dinesh-dhanukonda-480007168" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/dineshdhanukonda" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
+        <h1>Bhyrava Diinesh Dhanukonda</h1>
+        <p class="tagline">DevOps Engineer </p>
+        <div class="social-icons">
+            <a href="https://linkedin.com/in/dinesh-dhanukonda-480007168" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/dineshdhanukonda" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </section>
-
-    <!-- Skills Section -->
     <section id="skills" class="skills">
         <h2>Technical Skills</h2>
         <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fab fa-aws"></i>
-                <h3>AWS Cloud</h3>
-                <p>EC2, S3, Lambda, ECS, IAM</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-code"></i>
-                <h3>CI/CD</h3>
-                <p>Jenkins, GitHub Actions, ArgoCD</p>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-docker"></i>
-                <h3>Containers</h3>
-                <p>Docker, Kubernetes, Helm</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-terminal"></i>
-                <h3>Infra as Code</h3>
-                <p>Terraform, Ansible, CloudFormation</p>
-            </div>
+            <div class="skill-card"><i class="fab fa-aws"></i><h3>AWS Cloud</h3></div>
+            <div class="skill-card"><i class="fas fa-code"></i><h3>CI/CD</h3></div>
+            <div class="skill-card"><i class="fab fa-docker"></i><h3>Containers</h3></div>
+            <div class="skill-card"><i class="fas fa-terminal"></i><h3>Infra as Code</h3></div>
         </div>
     </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3> Intern DevOps Engineer - Copart</h3>
-                <span class="date">April 2022 - October 2022 </span>
-                <ul>
-                    <li>Designed AWS infrastructure for 50+ microservices.</li>
-                    <li>Reduced deployment time by 40% using Jenkins pipelines.</li>
-                    <li>Managed Kubernetes clusters with Helm charts.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3> Copart </h3>
-                <role>  class= Jr DevOps Engineer </role>
-                <span class="date">2022-present</span>
-                <ul>
-                    <li>Automated provisioning using Terraform.</li>
-                    <li>Implemented monitoring with Prometheus/Grafana.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <h2>Key Projects</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <img src="https://via.placeholder.com/400x250" alt="Project 1">
-                <h3>AWS ECS Pipeline</h3>
-                <p>Automated CI/CD for containerized apps using GitHub Actions.</p>
-                <a href="#" class="project-link">View Details</a>
-            </div>
-            <div class="project-card">
-                <img src="https://via.placeholder.com/400x250" alt="Project 2">
-                <h3>Kubernetes Cluster Setup</h3>
-                <p>High-availability K8s cluster on AWS with Terraform.</p>
-                <a href="#" class="project-link">View Details</a>
-            </div>
+            <div class="project-card"><h3>AWS ECS Pipeline</h3></div>
+            <div class="project-card"><h3>Kubernetes Cluster Setup</h3></div>
         </div>
     </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Get in Touch</h2>
         <div class="contact-content">
-            <p>Let's collaborate on your next DevOps project!</p>
-            <a href="mailto:dineshdhanukonda007@gmail.com" class="email-btn">Email Me</a>
+            <a href="mailto:dineshdhanukonda007@gmail.com">Email Me</a>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <p>© 2024 Dinesh Dhanukonda. All rights reserved.</p>
+        <p>© 2022 Diinesh Dhanukonda. All rights reserved.</p>
     </footer>
-
-    <!-- Script for smooth scrolling -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
