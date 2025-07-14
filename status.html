@@ -1,36 +1,30 @@
 from datetime import datetime
+import os
 
-# Create a simple HTML file with status info (you can change this dynamically later)
+# Create the folder if not exists
+os.makedirs("/mnt/data", exist_ok=True)
+
+# HTML content
 status_html = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="30">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trade With Bhyrava - Status</title>
-    <style>
-        body {{ font-family: Arial, sans-serif; background: #1e1e2f; color: #eee; padding: 30px; }}
-        .status {{ background: #2b2b3d; border-radius: 10px; padding: 20px; margin-top: 20px; }}
-        .status h2 {{ color: #76ff03; }}
-        .error h2 {{ color: #ff1744; }}
-        .timestamp {{ color: #ccc; font-size: 14px; }}
-    </style>
+    <title>Trade With Bhyrava - Bot Status</title>
 </head>
-<body>
-    <h1>🚀 Trade With Bhyrava - Bot Status</h1>
-    <div class="status">
-        <h2>✅ Bot Logged In Successfully</h2>
-        <p>🧠 Signal: BUY NIFTY 25600 CE @ ₹20<br>🛡️ Stop Loss: ₹15 | Target: ₹30</p>
-        <p class="timestamp">Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-    </div>
+<body style="font-family:sans-serif; background-color:#f9f9f9; padding:20px;">
+    <h2>🚀 Trade With Bhyrava - Bot Status</h2>
+    <p>✅ <strong>Bot Logged In Successfully</strong></p>
+    <p>🧠 <strong>Signal:</strong> BUY NIFTY 25600 CE @ ₹20</p>
+    <p>🛡️ <strong>Stop Loss:</strong> ₹15 | 🎯 <strong>Target:</strong> ₹30</p>
+    <p>⏱ <em>Updated:</em> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
 </body>
 </html>
 """
 
-# Save the file to download manually or commit to GitHub later
+# Save the file
 file_path = "/mnt/data/status.html"
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(status_html)
 
-file_path
+print("✅ HTML file saved:", file_path)
