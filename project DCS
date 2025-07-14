@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCS - Dhanukonda Consultancy Services</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .logo img {
+            width: 100px; /* Matches Image 1's 100x100px logo size */
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            margin-left: 20px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: #007bff; /* Blue from Image 0 */
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff; /* White text from Image 0 */
+            font-weight: 500;
+            padding: 10px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #28a745; /* Green hover from Image 0 */
+        }
+
+        /* Dropdown Menus */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            list-style: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+
+        nav ul li:hover .dropdown {
+            display: block;
+            opacity: 1;
+        }
+
+        .dropdown li {
+            margin: 5px 0;
+        }
+
+        .dropdown a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            color: #007bff;
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            color: #007bff;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            background-color: #007bff; /* Blue from Image 1 */
+            color: #fff;
+            padding: 20px;
+            border-left: 5px solid #28a745; /* Green from Image 1 */
+            border-right: 5px solid #28a745;
+            width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .column h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .column li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .column li:hover {
+            background-color: #0056b3;
+        }
+
+        /* Strictly Six KYC Section */
+        .kyc-section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+
+        .kyc-section h2 {
+            font-size: 32px;
+            color: #007bff; /* Blue from Image 0 */
+            margin-bottom: 20px;
+        }
+
+        .kyc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .kyc-item {
+            background: #fff;
+            border: 2px solid #dc3545; /* Red from Image 0 */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .kyc-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .kyc-icon {
+            font-size: 40px;
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+
+        .kyc-label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: #007bff; /* Blue from Image 0 */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #28a745; /* Green from Image 0 */
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .columns {
+                flex-direction: column;
+            }
+
+            .column {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .dropdown {
+                position: static;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="path/to/dcs_logo.png" alt="DCS Logo"> <!-- Replace with actual logo path -->
+        </div>
+        <h1>DCS Dhanukonda Consultancy Services</h1>
+    </header>
+
+    <!-- Navigation Menu with Dropdowns -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>
+                <a href="#">Mutual Funds</a>
+                <ul class="dropdown">
+                    <li><a href="#">Mutual Fund NFO</a></li>
+                    <li><a href="#">Mutual Fund SIP</a></li>
+                    <li><a href="#">Mutual Fund Lumpsum</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Equities</a>
+                <ul class="dropdown">
+                    <li><a href="#">Equity Market</a></li>
+                    <li><a href="#">Equity Derivatives</a></li>
+                </ul>
+            </li>
+            <li><a href="#">IPO</a></li>
+            <li>
+                <a href="#">Insurance</a>
+                <ul class="dropdown">
+                    <li><a href="#">Health Insurance</a></li>
+                    <li><a href="#">Motor Insurance</a></li>
+                    <li><a href="#">Life Insurance</a></li>
+                </ul>
+            </li>
+            <li><a href="#">PAN Card</a></li>
+            <li><a href="#">Account Details</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="hero">
+            <h2>Welcome to DCS Consultancy Services</h2>
+            <p>All in One Place for Your Financial Needs</p>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li>Equity Market</li>
+                    <li>Equity Derivatives</li>
+                    <li>Commodity Derivatives</li>
+                    <li>Depository</li>
+                    <li>Buy Back</li>
+                    <li>Offer For Sale</li>
+                    <li>SLBM</li>
+                    <li>Pantan</li>
+                    <li>TIN FC</li>
+                    <li>Ezeecwill</li>
+                    <li>E-Repository</li>
+                    <li>Loans Against Shares</li>
+                    <li>IPO</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Invest In</h3>
+                <ul>
+                    <li>Mutual Fund NFO</li>
+                    <li>Mutual Fund SIP</li>
+                    <li>Mutual Fund Lumpsum</li>
+                    <li>National Pension System</li>
+                    <li>Life Insurance</li>
+                    <li>Tax Free Bonds</li>
+                    <li>RBI Bonds</li>
+                    <li>Corporate Fixed Deposits</li>
+                    <li>Perpetual Bonds</li>
+                    <li>Debentures</li>
+                    <li>Sovereign Gold Bond</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Insurance & Loans</h3>
+                <ul>
+                    <li>Health Insurance</li>
+                    <li>Super Topup Policy</li>
+                    <li>Motor Insurance</li>
+                    <li>Fire Insurance</li>
+                    <li>House Holders Policy</li>
+                    <li>Employer Workmen Compensation Policy</li>
+                    <li>Personal Accident Policy</li>
+                    <li>Marine Insurance</li>
+                    <li>Shop Keepers Policy</li>
+                    <li>Industrial Insurance</li>
+                    <li>Overseas Travel Insurance</li>
+                    <li>Home Loans</li>
+                    <li>Mortgage Loans</li>
+                    <li>Loan Against Property</li>
+                    <li>Takeover Loans</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Strictly Six KYC Section -->
+    <section class="kyc-section">
+        <h2>Strictly Six KYC Attributes</h2>
+        <div class="kyc-grid">
+            <div class="kyc-item">
+                <div class="kyc-icon">👤</div>
+                <div class="kyc-label">Name</div>
+            </div>
+            <div class="kyc-item">
+                <div class="kyc-icon">🆔</div>
+                <div class="kyc-label">PAN</div>
+            </div>
+            <div class="kyc-item">
+                <div class="kyc-icon">📍</div>
+                <div class="kyc-label">Address</div>
+            </div>
+            <div class="kyc-item">
+                <div class="kyc-icon">📱</div>
+                <div class="kyc-label">Mobile Number</div>
+            </div>
+            <div class="kyc-item">
+                <div class="kyc-icon">✉️</div>
+                <div class="kyc-label">Email ID</div>
+            </div>
+            <div class="kyc-item">
+                <div class="kyc-icon">💰</div>
+                <div class="kyc-label">Income Range</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta-section">
+        <h2>Get Started Today</h2>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button">Apply PAN Online</a>
+            <a href="#" class="cta-button">NPS Online Services</a>
+            <a href="#" class="cta-button">RE KYC</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2022 DCS Consultancy Services. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
