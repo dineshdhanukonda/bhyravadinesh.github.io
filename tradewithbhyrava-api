@@ -1,0 +1,59 @@
+const express = require('express');
+const axios = require('axios');
+const nodemailer = require('nodemailer');
+const TelegramBot = require('node-telegram-bot-api');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: { user: process.env.MAIL_ID, pass: process.env.MAIL_PASS }
+});
+
+app.get('/option-chain', async (req, res) => {
+  try {
+    const { data } = await axios.get(
+      'https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY',
+      { headers: { 'User-Agent': 'Mozilla/5.0' } }
+    );
+    const top10 = data.records.data.slice(0, 10);
+    res.json({ status: 'ok', data: top10 });
+  } catch (e) {
+    res.status(500).json({ status: 'error', error: e.message });
+  }
+});
+
+// Sample alert route you can trigger for testing
+app.get('/send-alert', async (req, res) => {
+  const msg = '🔔 NIFTY Alert from Bhyrava bot!';
+  try {
+    await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, msg);
+    await transporter.sendMail({ from: process.env.MAIL_ID, to: process.env.MAIL_ID, subject: 'Bhyrava Alert', text: msg });
+    res.json({ status: 'sent' });
+  } catch (e) {
+    res.status(500).json({ status: 'error', error: e.message });
+  }
+});
+
+app.listen(PORT, () => console.log(`⚡ Running on port ${PORT}`));
+
+#package.json
+
+{
+  "name": "tradewithbhyrava-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "axios": "^1.0.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "node-telegram-bot-api": "^0.61.0",
+    "nodemailer": "^6.8.0"
+  }
+}
+
+
