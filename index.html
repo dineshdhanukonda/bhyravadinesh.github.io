@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TradeWithBhyrava Pro</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body.dark {
@@ -12,29 +11,43 @@
       color: #f1f5f9;
     }
     .card {
-      @apply bg-white dark:bg-slate-800 shadow-md rounded-2xl p-4 mb-6;
+      @apply bg-white dark:bg-slate-800 shadow-md rounded-2xl p-4 mb-6 transition-all duration-300;
     }
     .toggle-btn {
-      @apply fixed top-4 right-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-full shadow-lg;
+      @apply fixed top-4 right-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-full shadow-lg z-50;
+    }
+    iframe {
+      border-radius: 0.5rem;
     }
   </style>
 </head>
-<body class="transition-all">
+<body class="transition-all bg-white dark:bg-slate-900">
+
+  <!-- Dark/Light Mode Toggle -->
   <button class="toggle-btn" onclick="toggleTheme()">🌓</button>
+
+  <!-- Container -->
   <div class="container mx-auto px-4 py-6">
     <h1 class="text-3xl font-bold text-center mb-8">📊 TradeWithBhyrava Pro Dashboard</h1>
 
+    <!-- Charts -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div class="card">
         <h2 class="text-xl font-semibold mb-2">📈 NIFTY Live Chart</h2>
-        <div id="niftyChart" class="h-64"></div>
+        <iframe 
+          src="https://www.tradingview.com/embed-widget/advanced-chart/?symbol=NSE:NIFTY&theme=dark&interval=5&hide_side_toolbar=false&allow_symbol_change=true&autosize=true" 
+          width="100%" height="300" frameborder="0" allowfullscreen></iframe>
       </div>
+
       <div class="card">
         <h2 class="text-xl font-semibold mb-2">📉 BANKNIFTY Live Chart</h2>
-        <div id="bankniftyChart" class="h-64"></div>
+        <iframe 
+          src="https://www.tradingview.com/embed-widget/advanced-chart/?symbol=NSE:BANKNIFTY&theme=dark&interval=5&hide_side_toolbar=false&allow_symbol_change=true&autosize=true" 
+          width="100%" height="300" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
+    <!-- Option Chain -->
     <div class="card">
       <h2 class="text-xl font-semibold mb-2">📊 Option Chain (Mock Data)</h2>
       <div class="overflow-auto">
@@ -48,11 +61,27 @@
               <th class="px-4 py-2">LTP</th>
             </tr>
           </thead>
-          <tbody id="optionChainTable" class="divide-y dark:divide-slate-600"></tbody>
+          <tbody class="divide-y dark:divide-slate-600">
+            <tr class="hover:bg-gray-100 dark:hover:bg-slate-700">
+              <td class="px-4 py-2">20000</td>
+              <td class="px-4 py-2">150000</td>
+              <td class="px-4 py-2">180000</td>
+              <td class="px-4 py-2">12.5%</td>
+              <td class="px-4 py-2">210</td>
+            </tr>
+            <tr class="hover:bg-gray-100 dark:hover:bg-slate-700">
+              <td class="px-4 py-2">20100</td>
+              <td class="px-4 py-2">130000</td>
+              <td class="px-4 py-2">160000</td>
+              <td class="px-4 py-2">13.2%</td>
+              <td class="px-4 py-2">195</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
 
+    <!-- Alerts and Bot Status -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="card">
         <h2 class="text-xl font-semibold mb-2">🔔 Trade Alerts</h2>
@@ -65,69 +94,19 @@
     </div>
   </div>
 
+  <!-- Dark Mode Script -->
   <script>
     const toggleTheme = () => {
       document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     };
 
-    async function loadData() {
-      const res = await fetch("data.json");
-      const data = await res.json();
-      drawChart("niftyChart", data.nifty);
-      drawChart("bankniftyChart", data.banknifty);
-      loadTable(data.option_chain);
-      loadAlerts(data.alerts);
-      updateBotStatus(data.bot_status);
-    }
-
-    function drawChart(id, prices) {
-      const trace = {
-        x: prices.map(p => p.time),
-        y: prices.map(p => p.price),
-        type: 'scatter',
-        mode: 'lines+markers',
-        line: { color: '#22d3ee' }
-      };
-      Plotly.newPlot(id, [trace], {
-        margin: { t: 10, r: 0, b: 30, l: 40 },
-        displayModeBar: false
-      });
-    }
-
-    function loadTable(data) {
-      const tbody = document.getElementById("optionChainTable");
-      tbody.innerHTML = "";
-      data.forEach(row => {
-        const tr = `<tr class='hover:bg-gray-100 dark:hover:bg-slate-700'>
-          <td class='px-4 py-2'>${row.strike}</td>
-          <td class='px-4 py-2'>${row.ce_oi}</td>
-          <td class='px-4 py-2'>${row.pe_oi}</td>
-          <td class='px-4 py-2'>${row.iv}</td>
-          <td class='px-4 py-2'>${row.ltp}</td>
-        </tr>`;
-        tbody.innerHTML += tr;
-      });
-    }
-
-    function loadAlerts(alerts) {
-      const container = document.getElementById("alertsContainer");
-      if (!alerts || alerts.length === 0) {
-        container.innerHTML = "<p class='text-gray-400'>No active alerts.</p>";
-        return;
+    // Persist theme across reloads
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
       }
-      container.innerHTML = alerts.map(a => `
-        <div class="bg-yellow-100 text-yellow-800 p-2 rounded mb-2">
-          <strong>${a.symbol}</strong> - ${a.signal} @ ${a.entry} | SL: ${a.sl} | Target: ${a.target}
-        </div>
-      `).join('');
-    }
-
-    function updateBotStatus(status) {
-      document.getElementById("botStatus").textContent = `${status.text} (Last updated: ${status.time})`;
-    }
-
-    loadData();
-    setInterval(loadData, 5 * 60 * 1000);
+    };
   </script>
 </body>
 </html>
