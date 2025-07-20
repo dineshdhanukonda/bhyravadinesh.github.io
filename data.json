@@ -1,40 +1,15 @@
 {
-  "nifty": [
-    { "time": "09:15", "price": 22200 },
-    { "time": "09:20", "price": 22245 },
-    { "time": "09:25", "price": 22230 },
-    { "time": "09:30", "price": 22270 }
-  ],
-  "banknifty": [
-    { "time": "09:15", "price": 48200 },
-    { "time": "09:20", "price": 48170 },
-    { "time": "09:25", "price": 48240 },
-    { "time": "09:30", "price": 48310 }
-  ],
+  "nifty": [{ "time": "09:15", "price": 22400 }, ...],
+  "banknifty": [{ "time": "09:15", "price": 48200 }, ...],
   "option_chain": [
     { "strike": 22200, "ce_oi": 110000, "pe_oi": 95000, "iv": 12.5, "ltp": 140.75 },
-    { "strike": 22300, "ce_oi": 102000, "pe_oi": 98000, "iv": 11.9, "ltp": 98.35 },
-    { "strike": 22400, "ce_oi": 94000, "pe_oi": 100000, "iv": 10.8, "ltp": 85.60 },
-    { "strike": 22500, "ce_oi": 89000, "pe_oi": 97000, "iv": 10.1, "ltp": 76.20 }
+    ...
   ],
   "alerts": [
-    {
-      "symbol": "BANKNIFTY",
-      "signal": "BUY",
-      "entry": 48210,
-      "sl": 48000,
-      "target": 48550
-    },
-    {
-      "symbol": "NIFTY",
-      "signal": "SELL",
-      "entry": 22260,
-      "sl": 22300,
-      "target": 22180
-    }
+    { "symbol": "NIFTY", "signal": "BUY", "entry": 24968.40, "sl": 24800, "target": 25100 }
   ],
   "bot_status": {
-    "text": "Running ✅",
-    "time": "2025-07-20 11:40 AM"
+    "text": "Active - Scanning opportunities...",
+    "time": "11:59:01"
   }
 }
