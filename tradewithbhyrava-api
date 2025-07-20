@@ -1,59 +1,70 @@
+// 🔥 TradeWithBhyrava - All-in-One Live Backend
 const express = require('express');
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
+// ✅ REPLACE WITH YOUR SECRETS IF .env ISN'T USED
+const TELEGRAM_BOT_TOKEN = '7372807989:AAFROF1UzElkM1B8k2JgLM4ROIxtcOzkThY';
+const TELEGRAM_CHAT_ID = '7372807989';
+const MAIL_ID = 'bhyravadinesh@gmail.com';
+const MAIL_PASS = 'W6NCSDBCOERNUFGDQHLCC2FR3E';
+
+const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: false });
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
-  auth: { user: process.env.MAIL_ID, pass: process.env.MAIL_PASS }
+  auth: {
+    user: MAIL_ID,
+    pass: MAIL_PASS
+  }
 });
 
+// ✅ API: Fetch Option Chain from NSE
 app.get('/option-chain', async (req, res) => {
   try {
-    const { data } = await axios.get(
+    const response = await axios.get(
       'https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY',
-      { headers: { 'User-Agent': 'Mozilla/5.0' } }
+      {
+        headers: {
+          'User-Agent': 'Mozilla/5.0',
+          'Referer': 'https://www.nseindia.com/option-chain'
+        }
+      }
     );
-    const top10 = data.records.data.slice(0, 10);
+    const top10 = response.data.records.data.slice(0, 10);
     res.json({ status: 'ok', data: top10 });
-  } catch (e) {
-    res.status(500).json({ status: 'error', error: e.message });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
   }
 });
 
-// Sample alert route you can trigger for testing
+// ✅ API: Send Alert to Telegram & Email
 app.get('/send-alert', async (req, res) => {
-  const msg = '🔔 NIFTY Alert from Bhyrava bot!';
+  const alertMessage = '📢 Bhyrava Alert: Check NIFTY movement now!';
+
   try {
-    await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, msg);
-    await transporter.sendMail({ from: process.env.MAIL_ID, to: process.env.MAIL_ID, subject: 'Bhyrava Alert', text: msg });
-    res.json({ status: 'sent' });
-  } catch (e) {
-    res.status(500).json({ status: 'error', error: e.message });
+    await bot.sendMessage(TELEGRAM_CHAT_ID, alertMessage);
+    await transporter.sendMail({
+      from: MAIL_ID,
+      to: MAIL_ID,
+      subject: '📈 Trade Alert - Bhyrava',
+      text: alertMessage
+    });
+
+    res.json({ status: 'Alert sent to Telegram and Email!' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
-app.listen(PORT, () => console.log(`⚡ Running on port ${PORT}`));
+app.get('/', (req, res) => {
+  res.send('✅ TradeWithBhyrava backend is running...');
+});
 
-#package.json
-
-{
-  "name": "tradewithbhyrava-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": { "start": "node index.js" },
-  "dependencies": {
-    "axios": "^1.0.0",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.0",
-    "node-telegram-bot-api": "^0.61.0",
-    "nodemailer": "^6.8.0"
-  }
-}
-
-
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});
