@@ -3,89 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TradeWithBhyrava Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <title>TradeWithBhyrava Pro</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body.dark-mode {
-      background-color: #121212;
-      color: #fff;
+    body.dark {
+      background-color: #0f172a;
+      color: #f1f5f9;
     }
-    .dark-mode .card {
-      background-color: #1e1e1e;
-      border-color: #444;
+    .card {
+      @apply bg-white dark:bg-slate-800 shadow-md rounded-2xl p-4 mb-6;
     }
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
+    .toggle-btn {
+      @apply fixed top-4 right-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-full shadow-lg;
     }
   </style>
 </head>
-<body>
-  <div class="container py-4">
-    <button class="btn btn-secondary theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
-    <h1 class="text-center mb-4">📊 TradeWithBhyrava Dashboard</h1>
+<body class="transition-all">
+  <button class="toggle-btn" onclick="toggleTheme()">🌓</button>
+  <div class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold text-center mb-8">📊 TradeWithBhyrava Pro Dashboard</h1>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">NIFTY Live Chart</h5>
-            <div id="niftyChart"></div>
-          </div>
-        </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="card">
+        <h2 class="text-xl font-semibold mb-2">📈 NIFTY Live Chart</h2>
+        <div id="niftyChart" class="h-64"></div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">BANKNIFTY Live Chart</h5>
-            <div id="bankniftyChart"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Option Chain (Mock Data)</h5>
-        <table class="table table-bordered" id="optionChainTable">
-          <thead class="table-dark">
-            <tr>
-              <th>Strike</th>
-              <th>CE OI</th>
-              <th>PE OI</th>
-              <th>IV</th>
-              <th>LTP</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">🔔 Trade Alerts</h5>
-        <div id="alertsContainer">No signals yet.</div>
+      <div class="card">
+        <h2 class="text-xl font-semibold mb-2">📉 BANKNIFTY Live Chart</h2>
+        <div id="bankniftyChart" class="h-64"></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">🤖 Bot Status</h5>
+      <h2 class="text-xl font-semibold mb-2">📊 Option Chain (Mock Data)</h2>
+      <div class="overflow-auto">
+        <table class="min-w-full text-sm text-left">
+          <thead class="bg-gray-200 dark:bg-slate-700">
+            <tr>
+              <th class="px-4 py-2">Strike</th>
+              <th class="px-4 py-2">CE OI</th>
+              <th class="px-4 py-2">PE OI</th>
+              <th class="px-4 py-2">IV</th>
+              <th class="px-4 py-2">LTP</th>
+            </tr>
+          </thead>
+          <tbody id="optionChainTable" class="divide-y dark:divide-slate-600"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card">
+        <h2 class="text-xl font-semibold mb-2">🔔 Trade Alerts</h2>
+        <div id="alertsContainer">No signals yet.</div>
+      </div>
+      <div class="card">
+        <h2 class="text-xl font-semibold mb-2">🤖 Bot Status</h2>
         <p id="botStatus">Bot is initializing...</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Theme Toggle
-    function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-    }
+    const toggleTheme = () => {
+      document.body.classList.toggle('dark');
+    };
 
-    // Load Mock Data
     async function loadData() {
       const res = await fetch("data.json");
       const data = await res.json();
@@ -102,21 +86,24 @@
         y: prices.map(p => p.price),
         type: 'scatter',
         mode: 'lines+markers',
-        line: { color: '#17BECF' }
+        line: { color: '#22d3ee' }
       };
-      Plotly.newPlot(id, [trace], { margin: { t: 0 } });
+      Plotly.newPlot(id, [trace], {
+        margin: { t: 10, r: 0, b: 30, l: 40 },
+        displayModeBar: false
+      });
     }
 
     function loadTable(data) {
-      const tbody = document.querySelector("#optionChainTable tbody");
+      const tbody = document.getElementById("optionChainTable");
       tbody.innerHTML = "";
       data.forEach(row => {
-        const tr = `<tr>
-          <td>${row.strike}</td>
-          <td>${row.ce_oi}</td>
-          <td>${row.pe_oi}</td>
-          <td>${row.iv}</td>
-          <td>${row.ltp}</td>
+        const tr = `<tr class='hover:bg-gray-100 dark:hover:bg-slate-700'>
+          <td class='px-4 py-2'>${row.strike}</td>
+          <td class='px-4 py-2'>${row.ce_oi}</td>
+          <td class='px-4 py-2'>${row.pe_oi}</td>
+          <td class='px-4 py-2'>${row.iv}</td>
+          <td class='px-4 py-2'>${row.ltp}</td>
         </tr>`;
         tbody.innerHTML += tr;
       });
@@ -124,12 +111,12 @@
 
     function loadAlerts(alerts) {
       const container = document.getElementById("alertsContainer");
-      if (alerts.length === 0) {
-        container.innerHTML = "No active alerts.";
+      if (!alerts || alerts.length === 0) {
+        container.innerHTML = "<p class='text-gray-400'>No active alerts.</p>";
         return;
       }
       container.innerHTML = alerts.map(a => `
-        <div class="alert alert-warning">
+        <div class="bg-yellow-100 text-yellow-800 p-2 rounded mb-2">
           <strong>${a.symbol}</strong> - ${a.signal} @ ${a.entry} | SL: ${a.sl} | Target: ${a.target}
         </div>
       `).join('');
@@ -139,20 +126,8 @@
       document.getElementById("botStatus").textContent = `${status.text} (Last updated: ${status.time})`;
     }
 
-    // Telegram Alert Example (on signal update)
-    async function sendTelegramAlert(message) {
-      const token = "7372807989:AAFROF1UzElkM1B8k2JgLM4ROIxtcOzkThY";
-      const chatId = "@your_channel_or_user_id"; // Replace with real one
-      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message })
-      });
-    }
-
-    // Initial load and periodic update
     loadData();
-    setInterval(loadData, 5 * 60 * 1000); // 5 mins refresh
+    setInterval(loadData, 5 * 60 * 1000);
   </script>
 </body>
 </html>
